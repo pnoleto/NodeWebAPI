@@ -1,7 +1,8 @@
 const jwtMiddleWare = require('./../helpers/jwtMiddleware');
 const authRoute = require('./routes/authenticateRoute');
-const personRoute = require('./routes/personRoute');
 const errorHandler = require('../helpers/errorHandler');
+const personRoute = require('./routes/personRoute');
+const currentVersion = require("../package.json")
 const bodyParser = require('body-parser');
 const index = require('./routes/index');
 const express = require('express');
@@ -15,8 +16,8 @@ app.use(errorHandler);
 app.use(cors());
 //const router = express.Router();
 //Rotas
-app.use('/v1/', index);
-app.use('/v1/persons', personRoute);
-app.use('/v1/user', authRoute);
+app.use(`/${currentVersion.APIVersion}/`, index);
+app.use(`/${currentVersion.APIVersion}/persons`, personRoute);
+app.use(`/${currentVersion.APIVersion}/user`, authRoute);
 
 module.exports = app;
