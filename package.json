@@ -1,31 +1,21 @@
 {
-  "name": "nodewebapi",
+  "name": "node-express",
   "version": "1.0.0",
-  "description": "Web API v1",
+  "APIVersion": "v1",
+  "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "npm test",
-    "start": "nodemon start"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/pnoleto/NodeWebAPI.git"
-  },
-  "keywords": [
-    "node",
-    "webApi",
-    "nodewebapi",
-    "ap"
-  ],
-  "author": "PNoleto",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/pnoleto/NodeWebAPI/issues"
-  },
-  "homepage": "https://github.com/pnoleto/NodeWebAPI#readme",
   "dependencies": {
-    "express": "^4.17.1",
-    "express-jwt": "^5.3.1",
-    "nodemon": "^1.19.3"
-  }
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.15.4",
+    "express-jwt": "^5.3.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./bin/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
