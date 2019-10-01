@@ -8,7 +8,8 @@ function jwtMiddleware() {
         .unless({
             path: [
                 // public routes that don't require authentication
-                `/${currentVersion.APIVersion}/users/token`
+                `/${currentVersion.APIVersion}/users/token`,
+                `/${currentVersion.APIVersion}/users/refreshToken`
             ]
         });
 }

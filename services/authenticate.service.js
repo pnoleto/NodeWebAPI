@@ -15,7 +15,7 @@ async function authenticate({ username, password }) {
         const refreshToken = jwt.sign(
             user,
             config.refreshTokenSecret,
-            { expiresIn: config.refreshTokenLife }
+            { expiresIn: config.refreshTokenExpiresIn, algorithm: config.refreshTokenAlgorithm }
         );
         const { password, ...userWithoutPassword } = user;
         return {
@@ -28,24 +28,22 @@ async function authenticate({ username, password }) {
 
 async function refreshToken({ refreshToken }) {
     if (refreshToken) {
-        const refreshToken = jwt.verify(
+        jwt.verify(
             refreshToken, config.refreshTokenSecret,
             (error, decoded) => {
                 if (decoded) {
                     const token = jwt.sign(
-                        { sub: user.id },
+                        { sub: 1 },
                         config.secret,
                         { expiresIn: config.expiresIn, algorithm: config.algorithm }
                     );
+                    return {
+                        token
+                    };
                 }
-            })
-        const { password, ...userWithoutPassword } = user;
-        return {
-            ...userWithoutPassword,
-            token,
-            refreshToken
-        };
+            }
+        )
     }
 }
 
-module.exports = { authenticate };
+module.exports = { authenticate, refreshToken };
