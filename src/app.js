@@ -18,6 +18,6 @@ app.use(cors());
 //Rotas
 app.use(`/${currentVersion.APIVersion}/`, index);
 app.use(`/${currentVersion.APIVersion}/persons`, personRoute);
-app.use(`/${currentVersion.APIVersion}/user`, authRoute);
+app.use(`/${currentVersion.APIVersion}/users`, authRoute);
 
 module.exports = app;

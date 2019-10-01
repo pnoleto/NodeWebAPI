@@ -7,11 +7,43 @@ const users = [{ id: 1, username: 'test', password: 'test', firstName: 'Test', l
 async function authenticate({ username, password }) {
     const user = users.find(u => u.username === username && u.password === password);
     if (user) {
-        const token = jwt.sign({ sub: user.id }, config.secret);
+        const token = jwt.sign(
+            { sub: user.id },
+            config.secret,
+            { expiresIn: config.expiresIn, algorithm: config.algorithm }
+        );
+        const refreshToken = jwt.sign(
+            user,
+            config.refreshTokenSecret,
+            { expiresIn: config.refreshTokenLife }
+        );
         const { password, ...userWithoutPassword } = user;
         return {
             ...userWithoutPassword,
-            token
+            token,
+            refreshToken
+        };
+    }
+}
+
+async function refreshToken({ refreshToken }) {
+    if (refreshToken) {
+        const refreshToken = jwt.verify(
+            refreshToken, config.refreshTokenSecret,
+            (error, decoded) => {
+                if (decoded) {
+                    const token = jwt.sign(
+                        { sub: user.id },
+                        config.secret,
+                        { expiresIn: config.expiresIn, algorithm: config.algorithm }
+                    );
+                }
+            })
+        const { password, ...userWithoutPassword } = user;
+        return {
+            ...userWithoutPassword,
+            token,
+            refreshToken
         };
     }
 }
