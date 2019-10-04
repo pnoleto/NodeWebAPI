@@ -2,22 +2,16 @@ const loginService = require('./../../services/authenticate.service');
 
 exports.authenticate = (req, res, next) => {
     loginService.authenticate(req.body)
-        .then((user) =>
-            user ?
-                res.json(user) :
-                res.status(400)
-                    .json({ message: 'Username or password is incorrect' }))
+        .then((token) =>
+            res.status(200).json(token))
         .catch(err =>
-            next(err));
+            res.status(400).json(err));
 };
 
 exports.refreshToken = (req, res, next) => {
     loginService.refreshToken(req.body)
         .then((refreshToken) =>
-            refreshToken ?
-                res.json(refreshToken) :
-                res.status(400)
-                    .json({ message: 'refresh token is invalid.' }))
+            res.status(200).json(refreshToken))
         .catch(err =>
-            next(err));
+            res.status(401).json(err));
 };
