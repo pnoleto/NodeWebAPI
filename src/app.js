@@ -12,12 +12,12 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
 app.use(jwtMiddleWare());
-app.use(errorHandler);
 app.use(cors());
-//const router = express.Router();
 //Rotas
 app.use(`/${currentVersion.APIVersion}/`, index);
 app.use(`/${currentVersion.APIVersion}/persons`, personRoute);
-app.use(`/${currentVersion.APIVersion}/user`, authRoute);
+app.use(`/${currentVersion.APIVersion}/users`, authRoute);
+
+app.use(errorHandler);
 
 module.exports = app;

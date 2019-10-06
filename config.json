@@ -1,3 +1,8 @@
 {
-    "secret":"key value"
+    "secret": "key value",
+    "expiresIn": 3000,
+    "algorithm": "HS512",
+    "refreshTokenSecret": "key valye to refresh token",
+    "refreshTokenExpiresIn": 6000,
+    "refreshTokenAlgorithm": "HS512"
 }
