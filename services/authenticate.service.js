@@ -13,7 +13,7 @@ async function authenticate({ username, password }) {
         const refreshToken = jwt.sign(user, config.refreshTokenSecret, { expiresIn: config.refreshTokenExpiresIn, algorithm: config.refreshTokenAlgorithm });
         return { ...userWithoutPassword, token, refreshToken };
     }
-    throw { name: 'InvalidCredential', message: 'Username or password is incorrect' };
+    throw { name: 'InvalidCredential' };
 }
 
 async function refreshToken({ refreshToken }) {
@@ -25,7 +25,7 @@ async function refreshToken({ refreshToken }) {
         return { ...userWithoutPassword, token };
     }
 
-    throw err;
+    throw { name: "UnauthorizedError" };
 }
 
 module.exports = { authenticate, refreshToken };
