@@ -1,8 +1,28 @@
 {
-    "secret": "key value",
-    "expiresIn": 3000,
-    "algorithm": "HS512",
-    "refreshTokenSecret": "key valye to refresh token",
-    "refreshTokenExpiresIn": 6000,
-    "refreshTokenAlgorithm": "HS512"
+    "tokenOptions": {
+        "secret": "key value",
+        "expiresIn": 3000,
+        "algorithm": "HS512",
+        "refreshTokenSecret": "key valye to refresh token",
+        "refreshTokenExpiresIn": 6000,
+        "refreshTokenAlgorithm": "HS512"
+    },
+    "corsOptions": {
+        "origin": [
+            "ocalhost"
+        ],
+        "methods": [
+            "GET",
+            "HEAD",
+            "PUT",
+            "PATCH",
+            "POST",
+            "DELETE"
+        ],
+        "allowedHeaders": [
+            "Authorization",
+            "Content-Type"
+        ],
+        "optionsSuccessStatus": 200
+    }
 }

@@ -9,19 +9,19 @@ async function authenticate({ username, password }) {
 
     if (user) {
         const { password, ...userWithoutPassword } = user;
-        const token = jwt.sign({ id: user.id, name: username }, config.secret, { expiresIn: config.expiresIn, algorithm: config.algorithm });
-        const refreshToken = jwt.sign(user, config.refreshTokenSecret, { expiresIn: config.refreshTokenExpiresIn, algorithm: config.refreshTokenAlgorithm });
+        const token = jwt.sign({ id: user.id, name: username }, config.tokenOptions.secret, { expiresIn: config.tokenOptions.expiresIn, algorithm: config.tokenOptions.algorithm });
+        const refreshToken = jwt.sign(user, config.tokenOptions.refreshTokenSecret, { expiresIn: config.tokenOptions.refreshTokenExpiresIn, algorithm: config.tokenOptions.refreshTokenAlgorithm });
         return { ...userWithoutPassword, token, refreshToken };
     }
     throw { name: 'InvalidCredential' };
 }
 
 async function refreshToken({ refreshToken }) {
-    const decodedPlayload = jwt.verify(refreshToken, config.refreshTokenSecret);
+    const decodedPlayload = jwt.verify(refreshToken, config.tokenOptions.refreshTokenSecret);
 
     if (decodedPlayload) {
         const { password, ...userWithoutPassword } = decodedPlayload;
-        const token = jwt.sign({ decodedPlayload }, config.secret, { expiresIn: config.expiresIn, algorithm: config.algorithm });
+        const token = jwt.sign({ decodedPlayload }, config.tokenOptions.secret, { expiresIn: config.tokenOptions.expiresIn, algorithm: config.tokenOptions.algorithm });
         return { ...userWithoutPassword, token };
     }
 
