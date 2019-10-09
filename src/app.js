@@ -2,12 +2,12 @@ const jwtMiddleWare = require('./../helpers/jwtMiddleware');
 const authRoute = require('./routes/authenticateRoute');
 const errorHandler = require('../helpers/errorHandler');
 const personRoute = require('./routes/personRoute');
-const winston = require('winston');
 const expressWinston = require('express-winston');
 const config = require('./../config.json');
 const package = require("../package.json");
 const bodyParser = require('body-parser');
 const index = require('./routes/index');
+const winston = require('winston');
 const express = require('express');
 const cors = require('cors');
 
@@ -25,13 +25,17 @@ app.use(`/${APIVersion}/users`, authRoute);
 
 app.use(expressWinston.errorLogger({
     transports: [
-        new winston.transports.Console()
+        new winston.transports.File({ filename: `./Logs/log.txt` })
     ],
     format: winston.format.combine(
-        winston.format.colorize(),
-        winston.format.json()
-    )
-}));
+        winston.format.prettyPrint(),
+        winston.format.timestamp(),
+        winston.format.colorize()
+    ),
+    level: "error"
+})
+);
+
 app.use(errorHandler);
 
 module.exports = app;
