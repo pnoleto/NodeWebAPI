@@ -9,7 +9,7 @@
     },
     "corsOptions": {
         "origin": [
-            "ocalhost"
+            "localhost"
         ],
         "methods": [
             "GET",

@@ -8,6 +8,7 @@ const package = require("../package.json");
 const bodyParser = require('body-parser');
 const index = require('./routes/index');
 const express = require('express');
+const helmet = require('helmet');
 const cors = require('cors');
 
 const app = express();
@@ -15,6 +16,7 @@ const { APIVersion } = package;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(helmet());
 app.use(compression());
 app.use(jwtMiddleWare());
 
