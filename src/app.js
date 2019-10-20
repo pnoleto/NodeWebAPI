@@ -1,4 +1,4 @@
-const sequelize = require('../services/repository.service');
+const person = require('./models/person.model');
 const jwtMiddleWare = require('../helpers/jwtMiddleware');
 const authRoute = require('./routes/authenticateRoute');
 const errorHandler = require('../helpers/errorHandler');
@@ -28,5 +28,18 @@ app.use(`/v1/users`, authRoute);
 app.use(logger);
 //O middlewere de manipulação de erros deve ser sempre o ultimo.
 app.use(errorHandler);
+
+person.findAll({
+    where: {
+        lastName: 1,
+        firstName: 2
+    }
+}).then(()=>{
+
+})
+.catch((error)=>{
+    console.log(error.message);
+    
+})
 
 module.exports = app;
