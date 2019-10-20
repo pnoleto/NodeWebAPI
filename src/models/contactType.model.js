@@ -1,17 +1,11 @@
 const repository = require('../../services/repository.service');
-const city = require('../models/city.model');
 const sequelize = require('sequelize');
 
 const Model = sequelize.Model;
 
-class State extends Model { }
-State.init({
+class ContactType extends Model { }
+ContactType.init({
     // attributes
-    code: {
-        type: sequelize.INTEGER,
-        allowNull: false,
-        comment: 'state identification code'
-    },
     name: {
         type: sequelize.STRING,
         allowNull: false,
@@ -19,12 +13,12 @@ State.init({
         notEmpty: true,
         max: 100,
         min: 5,
-        comment: 'state name'
+        comment: 'conctact type name'
     }
 }, {
     sequelize: repository,
-    modelName: 'state'
+    modelName: 'contactType'
     // options
 });
 
-module.exports = State;
+module.exports = ContactType;

@@ -66,8 +66,7 @@ Adress.init({
         type: sequelize.INTEGER,
         allowNull: false,
         isNumeric: true,
-        comment: 'addresses postal code',
-        is: {/*validation address postal code*/ }
+        comment: 'addresses postal code'
     },
     idCity: {
         type: sequelize.INTEGER,
