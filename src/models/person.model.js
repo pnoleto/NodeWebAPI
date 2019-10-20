@@ -1,4 +1,5 @@
 const repository = require('../../services/repository.service');
+const Address = require('../models/addressType.model');
 const Sequelize = require('sequelize');
 
 const Model = Sequelize.Model;
@@ -13,6 +14,7 @@ Person.init({
         notEmpty: true,
         max: 150,
         min: 5,
+        comment: 'Person firstName'
     },
     lastName: {
         type: Sequelize.STRING,
@@ -20,6 +22,7 @@ Person.init({
         notEmpty: true,
         max: 150,
         min: 5,
+        comment: 'Person lastName'
     },
     documentType: {
         type: Sequelize.STRING,
@@ -28,13 +31,15 @@ Person.init({
         isIn: ['CPF', 'RG', 'CNH'],
         max: 3,
         min: 3,
+        comment: ' Document type can be CPF, RG or CNH only'
     },
     document: {
         type: Sequelize.STRING,
-        isAlpha: true,
+        isNumeric: true,
         notEmpty: true,
         max: 15,
         min: 8,
+
     }
 }, {
     sequelize: repository,

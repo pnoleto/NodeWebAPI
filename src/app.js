@@ -1,4 +1,3 @@
-const person = require('./models/person.model');
 const jwtMiddleWare = require('../helpers/jwtMiddleware');
 const authRoute = require('./routes/authenticateRoute');
 const errorHandler = require('../helpers/errorHandler');
@@ -29,17 +28,17 @@ app.use(logger);
 //O middlewere de manipulação de erros deve ser sempre o ultimo.
 app.use(errorHandler);
 
-person.findAll({
-    where: {
-        lastName: 1,
-        firstName: 2
-    }
-}).then(()=>{
+const addressType = require('./models/addressType.model');
+const persons = require('./models/person.model');
+const address = require('./models/address.model');
+const state = require('./models/state.model');
+const city = require('./models/city.model');
 
-})
-.catch((error)=>{
-    console.log(error.message);
-    
-})
+//persons.sync().then(() => console.log('tabela pessoa criada com sucesso')).catch((err) => console.log('erro ao criar tabela pessoa', err.message));
+//addressType.sync().then(() => console.log('tabela tipos de endereco criada com sucesso')).catch((err) => console.log('erro ao criar tabela tipo de endereco', err.message));
+//state.sync().then(() => console.log('tabela stado criada com sucesso')).catch((err) => console.log('erro ao criar tabela estado', err.message));
+//city.sync().then(() => console.log('tabela cidade criada com sucesso')).catch((err) => console.log('erro ao criar tabela cidade', err.message));
+//address.sync().then(() => console.log('tabela endereco criada com sucesso')).catch((err) => console.log('erro ao endereco tabela endereco', err.message));
+
 
 module.exports = app;
