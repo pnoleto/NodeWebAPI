@@ -38,8 +38,7 @@ Contact.init({
         allowNull: false,
         notEmpty: true,
         isEmail: true,
-        max: 100,
-        min: 10,
+        len: [5, 100],
         comment: 'conctact email'
     },
 }, {

@@ -16,8 +16,7 @@ City.init({
         allowNull: false,
         isAlpha: true,
         notEmpty: true,
-        max: 100,
-        min: 5,
+        len: [5, 100],
         comment: 'city name'
     },
     idState:{

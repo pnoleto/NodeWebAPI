@@ -34,8 +34,7 @@ Adress.init({
         allowNull: false,
         isAlpha: true,
         notEmpty: true,
-        max: 100,
-        min: 5,
+        len: [5, 15],
         comment: 'addresses alias'
     },
     location: {
@@ -43,8 +42,7 @@ Adress.init({
         allowNull: false,
         isAlpha: true,
         notEmpty: true,
-        max: 100,
-        min: 5,
+        len: [5, 100],
         comment: 'addresses road, avenue, square and etc'
     },
     locationNumber: {
@@ -58,15 +56,15 @@ Adress.init({
         allowNull: false,
         isNumeric: true,
         notEmpty: true,
-        max: 100,
-        min: 5,
+        len: [5, 100],
         comment: 'addresses neighborhood'
     },
     postalCode: {
-        type: sequelize.INTEGER,
+        type: sequelize.STRING,
         allowNull: false,
         isNumeric: true,
-        comment: 'addresses postal code'
+        comment: 'addresses postal code',
+        len: [5, 15],
     },
     idCity: {
         type: sequelize.INTEGER,

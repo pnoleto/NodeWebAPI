@@ -20,8 +20,7 @@ Person.init({
         type: Sequelize.STRING,
         isAlpha: true,
         notEmpty: true,
-        max: 150,
-        min: 5,
+        len: [5, 150],
         comment: 'Person lastName'
     },
     documentType: {
@@ -29,16 +28,14 @@ Person.init({
         isAlpha: true,
         notEmpty: true,
         isIn: ['CPF', 'RG', 'CNH'],
-        max: 3,
-        min: 3,
+        len: [3, 3],
         comment: ' Document type can be CPF, RG or CNH only'
     },
     document: {
         type: Sequelize.STRING,
         isNumeric: true,
         notEmpty: true,
-        max: 15,
-        min: 8,
+        len: [8, 15],
 
     }
 }, {
