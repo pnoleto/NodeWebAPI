@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "APIVersion": "v1",
   "description": "",
-  "main": "server.js",
+  "main": "bin/server.js",
   "dependencies": {
     "body-parser": "^1.19.0",
     "compression": "^1.7.4",
