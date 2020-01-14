@@ -11,8 +11,9 @@ async function authenticate({ username, password }) {
         const { password, ...userWithoutPassword } = user;
         const token = jwt.sign({ id: user.id, name: username }, config.tokenOptions.secret, { expiresIn: config.tokenOptions.expiresIn, algorithm: config.tokenOptions.algorithm });
         const refreshToken = jwt.sign(user, config.tokenOptions.refreshTokenSecret, { expiresIn: config.tokenOptions.refreshTokenExpiresIn, algorithm: config.tokenOptions.refreshTokenAlgorithm });
-        return { ...userWithoutPassword, token, refreshToken };
+        return { token, refreshToken, ...userWithoutPassword, };
     }
+
     throw { name: 'InvalidCredential' };
 }
 
@@ -22,7 +23,7 @@ async function refreshToken({ refreshToken }) {
     if (decodedPlayload) {
         const { password, ...userWithoutPassword } = decodedPlayload;
         const token = jwt.sign({ decodedPlayload }, config.tokenOptions.secret, { expiresIn: config.tokenOptions.expiresIn, algorithm: config.tokenOptions.algorithm });
-        return { ...userWithoutPassword, token };
+        return { token, ...userWithoutPassword };
     }
 
     throw { name: "UnauthorizedError" };
