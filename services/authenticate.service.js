@@ -6,14 +6,27 @@ const users = [{ id: 1, username: 'test', password: 'test', firstName: 'Test', l
 
 async function authenticate({ username, password }) {
     const user = users.find(u => u.username === username && u.password === password);
+
     if (user) {
-        const token = jwt.sign({ sub: user.id }, config.secret);
         const { password, ...userWithoutPassword } = user;
-        return {
-            ...userWithoutPassword,
-            token
-        };
+        const token = jwt.sign({ id: user.id, name: username }, config.tokenOptions.secret, { expiresIn: config.tokenOptions.expiresIn, algorithm: config.tokenOptions.algorithm });
+        const refreshToken = jwt.sign(user, config.tokenOptions.refreshTokenSecret, { expiresIn: config.tokenOptions.refreshTokenExpiresIn, algorithm: config.tokenOptions.refreshTokenAlgorithm });
+        return { token, refreshToken, ...userWithoutPassword, };
     }
+
+    throw { name: 'InvalidCredential' };
 }
 
-module.exports = { authenticate };
+async function refreshToken({ refreshToken }) {
+    const decodedPlayload = jwt.verify(refreshToken, config.tokenOptions.refreshTokenSecret);
+
+    if (decodedPlayload) {
+        const { password, ...userWithoutPassword } = decodedPlayload;
+        const token = jwt.sign({ decodedPlayload }, config.tokenOptions.secret, { expiresIn: config.tokenOptions.expiresIn, algorithm: config.tokenOptions.algorithm });
+        return { token, ...userWithoutPassword };
+    }
+
+    throw { name: "UnauthorizedError" };
+}
+
+module.exports = { authenticate, refreshToken };

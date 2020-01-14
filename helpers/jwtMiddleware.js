@@ -1,14 +1,15 @@
 const expressJwt = require('express-jwt');
-const config = require('./../config.json');
-const currentVersion = require("../package.json")
+const { tokenOptions } = require('./../config.json');
 
 function jwtMiddleware() {
-    const { secret } = config;
+    const { secret } = tokenOptions;
     return expressJwt({ secret })
         .unless({
             path: [
                 // public routes that don't require authentication
-                `/${currentVersion.APIVersion}/user/authenticate`
+                `/v1`,
+                `/v1/users/token`,
+                `/v1/users/refreshToken`
             ]
         });
 }
