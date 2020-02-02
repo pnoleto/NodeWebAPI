@@ -13,6 +13,7 @@ async function authenticate({ username, password }) {
         const refreshToken = jwt.sign(user, config.tokenOptions.refreshTokenSecret, { expiresIn: config.tokenOptions.refreshTokenExpiresIn, algorithm: config.tokenOptions.refreshTokenAlgorithm });
         return { ...userWithoutPassword, token, refreshToken };
     }
+    
     throw { name: 'InvalidCredential' };
 }
 
