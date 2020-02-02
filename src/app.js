@@ -1,7 +1,7 @@
 const jwtMiddleWare = require('../helpers/jwtMiddleware');
 const authRoute = require('./routes/authenticateRoute');
 const errorHandler = require('../helpers/errorHandler');
-const logger = require('../services/logger.service'); 
+const logger = require('../services/logger.service');
 const personRoute = require('./routes/personRoute');
 const { corsOptions } = require('../config.json');
 const compression = require('compression');
