@@ -34,7 +34,7 @@ async function authenticate({ username, password }) {
     if (user) {
         const { password, ...userWithoutPassword } = user;
 
-        const token = await createToken(...userWithoutPassword, config.tokenOptions);
+        const token = await createToken({ ...userWithoutPassword }, config.tokenOptions);
 
         const refreshToken = await createToken({ ...userWithoutPassword }, config.refreshTokenOptions);
 
