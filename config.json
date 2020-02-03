@@ -3,9 +3,15 @@
         "secret": "key value",
         "expiresIn": 3000,
         "algorithm": "HS512",
-        "refreshTokenSecret": "key valye to refresh token",
-        "refreshTokenExpiresIn": 6000,
-        "refreshTokenAlgorithm": "HS512"
+        "issuer": "tgdfg",
+        "audience": "192.168.fghgfh.15"
+    },
+    "refreshTokenOptions": {
+        "secret": "key valye to refresh token",
+        "expiresIn": 6000,
+        "algorithm": "HS512",
+        "issuer": "NodeWebAPI",
+        "audience": "192.168.1.15"
     },
     "corsOptions": {
         "origin": [
