@@ -16,7 +16,7 @@ function errorHandler(err, req, res, next) {
     }
 
     if (err.name === "InvalidCredential") {
-        return res.status(401).json({ name: err.name, message: 'Username or password is incorrect' });
+        return res.status(401).json({ name: err.name, message: 'Username or password are incorrect' });
     }
 
     // default to 500 server error

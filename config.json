@@ -38,5 +38,28 @@
         "username": "postgres",
         "password": "AS@b5jf76",
         "dialect": "postgres"
+    },
+    "loggerOptions": {
+        "meta": false,
+        "colorize": true,
+        "expressFormat": true,
+        "requestWhitelist": [
+            "headers",
+            "query",
+            "body"
+        ],
+        "responseWhitelist": [
+            "headers",
+            "query",
+            "body"
+        ],
+        "statusLevels": {
+            "success": "debug",
+            "warn": "debug",
+            "error": "info"
+        },
+        "ignoredRoutes": [
+            "/v1"
+        ]
     }
 }
