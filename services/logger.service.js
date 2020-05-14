@@ -11,7 +11,8 @@ const loggerInstance = expressWinston.errorLogger({
         winston.format.timestamp(),
         winston.format.colorize(),
     ),
-    requestWhitelist: loggerOptions.requestWhitelist
+    requestWhitelist: loggerOptions.requestWhitelist,
+    blacklistedMetaFields: loggerOptions.requestBlacklist
 });
 
 module.exports = loggerInstance;

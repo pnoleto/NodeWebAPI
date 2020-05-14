@@ -53,6 +53,12 @@
             "query",
             "body"
         ],
+        "requestBlacklist":[
+            "process",
+            "error",
+            "trace",
+            "stack"
+        ],
         "statusLevels": {
             "success": "debug",
             "warn": "debug",
